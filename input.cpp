@@ -144,7 +144,7 @@ Article* processFile(const std::string &sourceFile, ErrorLog &errorLog) {
         errorLog.add(ErrorType::Fatal, sourceFile, "Unknown input file format.");
         return nullptr;
     }
-    std::string::size_type start = sourceFile.find_first_of('/');
+    std::string::size_type start = sourceFile.find_last_of('/');
     if (start == std::string::npos) start = 0;
     else ++start;
     const std::string dest = sourceFile.substr(start, sourceFile.size() - 3 - start) + "html";
