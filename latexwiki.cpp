@@ -54,8 +54,8 @@ int main(int argc, const char **argv) {
     Document document;
     ErrorLog errorLog;
     ScanDocument scanner(&document);
-    const std::string front = readFile("front.html");
-    const std::string back = readFile("back.html");
+    const std::string front = readFile("templates/front.html");
+    const std::string back = readFile("templates/back.html");
 
     std::chrono::milliseconds scanStart = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
     std::ifstream files(filelist);
