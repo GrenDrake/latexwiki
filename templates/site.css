@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "nexusCore";
+  src: url("/NexusCore.otf");
+}
+
 body {
     background: #999;
     margin: 0;
@@ -9,7 +14,7 @@ h1 {
 }
 
 .nexustext {
-    display: none;
+    font-family: nexusCore;
 }
 .parahead {
     font-weight: bold;
