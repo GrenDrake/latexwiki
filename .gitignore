@@ -1,0 +1,4 @@
+*.o
+out
+links.lst
+latexwiki

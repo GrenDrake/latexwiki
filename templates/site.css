@@ -1,0 +1,81 @@
+body {
+    background: #999;
+    margin: 0;
+    text-align: justify;
+}
+h1 {
+    border-bottom: 2px solid black;
+}
+
+.nexustext {
+    display: none;
+}
+.parahead {
+    font-weight: bold;
+}
+.lihead {
+    font-weight: bold;
+
+}
+
+.infobox {
+    width: 50%;
+    float: right;
+    margin: 0.25em;
+    margin-right: 0;
+}
+.infotitle {
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 120%;
+}
+.infohead {
+    text-align: center;
+    font-weight: bold;
+    padding-top: 0.2em;
+}
+.infoleft {
+    text-align: right;
+    font-style: italic;
+    padding-right: 0.1em;
+}
+.inforight {
+    text-align: left;
+    padding-left: 0.1em;
+}
+
+.narrowimage {
+    width: 25%;
+    float: right;
+}
+.mediumimage {
+    width: 50%;
+    float: right;
+}
+
+#content {
+    margin: 0 auto;
+    padding: 0.5em;
+    padding-bottom: 1em;
+    border: 0 1px solid grey;
+    background: white;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#header {
+    border-bottom: 1px dotted grey;
+    padding-bottom: 0.5em;
+    text-align: center;
+    font-size: 90%;
+    font-style: italic;
+}
+#footer {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid black;
+    text-align: center;
+    font-size: 90%;
+    font-style: italic;
+}
