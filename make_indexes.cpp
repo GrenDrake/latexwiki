@@ -106,7 +106,7 @@ void make_alpha(const std::string &pageTop, const std::string &pageBottom, std::
 }
 
 void make_world(const std::string &pageTop, const std::string &pageBottom, std::vector<IndexEntry> &pinfo) {
-    std::map<std::string, std::vector<const IndexEntry>> data;
+    std::map<std::string, std::vector<IndexEntry>> data;
 
     for (const IndexEntry entry : pinfo) {
         if (entry.world.empty()) {
@@ -146,7 +146,7 @@ void make_world(const std::string &pageTop, const std::string &pageBottom, std::
 
 
 void make_category(const std::string &pageTop, const std::string &pageBottom, std::vector<IndexEntry> &pinfo) {
-    std::map<std::string, std::vector<const IndexEntry>> data;
+    std::map<std::string, std::vector<IndexEntry>> data;
 
     for (const IndexEntry entry : pinfo) {
         if (entry.category.empty()) {
