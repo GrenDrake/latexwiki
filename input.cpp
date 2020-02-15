@@ -46,8 +46,14 @@ std::vector<CommandInfo> commandInfo = {
     {   "infoline",         2, 2 },
     {   "infohead",         1, 1 },
 
+    {   "startdblinfobox",  0, 0 },
+    {   "stopdblinfobox",   0, 0 },
+    {   "dblinfotitle",     1, 1 },
+    {   "dblinfoline",      4, 4 },
+
     {   "narrowimage",      2, 2 },
     {   "mediumimage",      2, 2 },
+    {   "wideimage",        2, 2 },
 
     {   "LaTeX",            0, 1 },
     {   "clearpage",        0, 0 },

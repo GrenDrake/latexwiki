@@ -122,6 +122,7 @@ struct Document {
 
     std::vector<Article*> articles;
     std::map<std::string, LinkTarget> links;
+    std::string graphicsPath;
 };
 
 struct CommandInfo {

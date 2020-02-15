@@ -52,6 +52,7 @@ int main(int argc, const char **argv) {
     if (filelist.empty()) filelist = "files.lst";
 
     Document document;
+    document.graphicsPath = "./";
     ErrorLog errorLog;
     ScanDocument scanner(&document);
     const std::string front = readFile("templates/front.html");
@@ -66,8 +67,10 @@ int main(int argc, const char **argv) {
     std::string filename;
     std::cerr << "SCANNING FILES...\n";
     while (std::getline(files, filename)) {
+        trim(filename);
         if (filename.empty()) continue;
-        // std::cerr << '[' << filename << "]\n";
+        if (filename[0] == '#') continue;
+
         Article *a = processFile(filename, errorLog);
         if (!a) continue;
 

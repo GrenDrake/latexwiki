@@ -2,6 +2,7 @@ body {
     background: #999;
     margin: 0;
     text-align: justify;
+    font-size: 12pt;
 }
 h1 {
     border-bottom: 2px solid black;
@@ -45,6 +46,25 @@ h1 {
     padding-left: 0.1em;
 }
 
+.dblinfobox {
+    width: 100%;
+}
+.dblinfotitle {
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 120%;
+}
+.dblinfoleft {
+    text-align: right;
+    font-style: italic;
+    padding-right: 0.1em;
+}
+.dblinforight {
+    text-align: left;
+    padding-left: 0.1em;
+}
+
 .narrowimage {
     width: 25%;
     float: right;
@@ -53,6 +73,9 @@ h1 {
     width: 50%;
     float: right;
 }
+.wideimage {
+    width: 98%;
+}
 
 #content {
     margin: 0 auto;
@@ -60,7 +83,7 @@ h1 {
     padding-bottom: 1em;
     border: 0 1px solid grey;
     background: white;
-    width: 800px;
+    width: 950px;
     margin-left: auto;
     margin-right: auto;
 }

@@ -104,13 +104,17 @@ void FormatDocument::handle(Command *command) {
         out << "</p>";
 
     } else if (command->command == "narrowimage") {
-        out << "<img src='../../";
+        out << "<img src='" << document->graphicsPath;
         handle(command->children.front());
         out << ".png' class='narrowimage'>";
     } else if (command->command == "mediumimage") {
-        out << "<img src='../../";
+        out << "<img src='" << document->graphicsPath;
         handle(command->children.front());
         out << ".png' class='mediumimage'>";
+    } else if (command->command == "wideimage") {
+        out << "<img src='" << document->graphicsPath;
+        handle(command->children.front());
+        out << ".png' class='wideimage'>";
 
     } else if (command->command == "startinfobox") {
         out << "<table class='infobox'>";
@@ -131,6 +135,24 @@ void FormatDocument::handle(Command *command) {
         handle(command->at(0));
         out << "</td></tr>";
 
+    } else if (command->command == "startdblinfobox") {
+        out << "<table class='dblinfobox'>";
+    } else if (command->command == "stopdblinfobox") {
+        out << "</table>";
+    } else if (command->command == "dblinfoline") {
+        out << "<tr><td class='dblinfoleft'>";
+        handle(command->at(0));
+        out << "</td><td class='dblinforight'>";
+        handle(command->at(1));
+        out << "</td><td class='dblinfoleft'>";
+        handle(command->at(2));
+        out << "</td><td class='dblinforight'>";
+        handle(command->at(3));
+        out << "</td></tr>";
+    } else if (command->command == "dblinfotitle") {
+        out << "<tr><td colspan='4' class='dblinfotitle'>";
+        handle(command->at(0));
+        out << "</td></tr>";
 
     } else if (command->command == "startorbittable") {
         out << "<table class='orbittable'>\n";
