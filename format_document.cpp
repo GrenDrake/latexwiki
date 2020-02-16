@@ -110,17 +110,23 @@ void FormatDocument::handle(Command *command) {
         out << "</p>";
 
     } else if (command->command == "narrowimage") {
-        out << "<img src='" << document->graphicsPath;
+        out << "<figure class='narrowimage'><img src='" << document->graphicsPath;
         handle(command->children.front());
-        out << ".png' class='narrowimage'>";
+        out << ".png'><br><caption>";
+        handle(command->at(1));
+        out << "</caption></figure>";
     } else if (command->command == "mediumimage") {
-        out << "<img src='" << document->graphicsPath;
+        out << "<figure class='mediumimage'><img src='" << document->graphicsPath;
         handle(command->children.front());
-        out << ".png' class='mediumimage'>";
+        out << ".png'><br><caption>";
+        handle(command->at(1));
+        out << "</caption></figure>";
     } else if (command->command == "wideimage") {
-        out << "<img src='" << document->graphicsPath;
+        out << "<figure class='wideimage'><img src='" << document->graphicsPath;
         handle(command->children.front());
-        out << ".png' class='wideimage'>";
+        out << ".png'><br><caption>";
+        handle(command->at(1));
+        out << "</caption></figure>";
 
     } else if (command->command == "startinfobox") {
         out << "<table class='infobox'>";

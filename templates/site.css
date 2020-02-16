@@ -73,13 +73,25 @@ h1 {
 .narrowimage {
     width: 25%;
     float: right;
+    text-align: center;
+}
+.narrowimage img {
+    width: 100%;
 }
 .mediumimage {
     width: 50%;
     float: right;
+    text-align: center;
+}
+.mediumimage img {
+    width: 100%;
 }
 .wideimage {
-    width: 98%;
+    width: 90%;
+    text-align: center;
+}
+.wideimage img {
+    width: 100%;
 }
 
 #content {
