@@ -64,6 +64,12 @@ void FormatDocument::handle(Command *command) {
             errorLog->add(ErrorType::Error, article->sourceFile, "Label text may not contain commands.");
             return;
         }
+    } else if (command->command == "pageref") {
+        Text *name = dynamic_cast<Text*>(command->at(0));
+        if (!name) {
+            errorLog->add(ErrorType::Error, article->sourceFile, "Label text may not contain commands.");
+            return;
+        }
 
         out << "(<a class='pageref' href='";
         auto iter = document->links.find(name->text);
@@ -76,7 +82,7 @@ void FormatDocument::handle(Command *command) {
                 out << '#' << iter->second.name;
             }
         }
-        out << "'>ref</a>)";
+        out << "'>link</a>)";
 
     } else if (command->command == "emph") {
         out << "<i>";
@@ -204,7 +210,16 @@ void FormatDocument::handle(Command *command) {
 
     } else if (command->command == "LaTeX") {
         out << "LaTeX";
-    } else if (command->command == "clearpage") {
+    } else if (command->command == "degree") {
+        out << "&deg;";
+    } else if (command->command == "times") {
+        out << "&times;";
+    } else if (command->command == "LaTeX") {
+        out << "LaTeX";
+    } else if (command->command == "parbox") {
+        handle(command->at(1));
+    } else if (command->command == "clearpage" || command->command == "textwidth"
+            || command->command == "linewidth") {
         // do nothing
     } else {
         for (Node *c : command->children) {

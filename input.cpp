@@ -19,6 +19,7 @@ std::vector<CommandInfo> commandInfo = {
     {   "addlabel",         2, 2 },
     {   "label",            1, 1 },
     {   "pr",               1, 1 },
+    {   "pageref",          1, 1 },
 
     {   "begin",            1, 99 },
     {   "end",              1, 1 },
@@ -56,7 +57,12 @@ std::vector<CommandInfo> commandInfo = {
     {   "wideimage",        2, 2 },
 
     {   "LaTeX",            0, 1 },
+    {   "degree",           0, 1 },
+    {   "times",            0, 1 },
     {   "clearpage",        0, 0 },
+    {   "parbox",           2, 3 },
+    {   "textwidth",        0, 0 },
+    {   "linewidth",        0, 0 },
 };
 
 const CommandInfo& getCommandInfo(const std::string &name) {
