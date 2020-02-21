@@ -19,7 +19,10 @@ void FormatDocument::handle(Fragment *fragment) {
 }
 
 void FormatDocument::handle(Text *text) {
-    out << text->text;
+    std::string result = text->text;
+    replaceText(result, "``", "&ldquo;");
+    replaceText(result, "''", "&rdquo;");
+    out << result;
 }
 
 void FormatDocument::handle(Command *command) {
