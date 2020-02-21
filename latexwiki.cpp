@@ -187,7 +187,7 @@ int main(int argc, const char **argv) {
     linkFile.close();
 
     if (!errorLog.isEmpty()) {
-        // dumpErrors(errorLog, hideWarnings);
+        dumpErrors(errorLog, hideWarnings);
     }
     std::cerr << "Total runtime: " << ((scanEnd - scanStart) + (writeEnd - writeStart) + (indexesStart - indexesEnd)).count() << " ms.\n";
 
