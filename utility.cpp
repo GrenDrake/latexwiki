@@ -32,3 +32,11 @@ std::string& trim(std::string &text) {
 
     return text;
 }
+
+std::string& replaceText(std::string &text, const std::string &from, const std::string &to) {
+    while (1) {
+        std::string::size_type titlePos = text.find(from);
+        if (titlePos == std::string::npos) return text;
+        text.replace(titlePos, from.size(), to);
+    }
+}

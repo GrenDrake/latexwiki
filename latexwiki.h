@@ -154,6 +154,7 @@ std::string& trim(std::string &text);
 Article* processFile(const std::string &sourceFile, ErrorLog &errorLog);
 int g_toupper(int c);
 bool is_identifier(char c);
+std::string& replaceText(std::string &text, const std::string &from, const std::string &to);
 std::string readFile(const std::string &filename);
 
 void make_indexes(const std::string &pageTop, const std::string &pageBottom, Document &document);

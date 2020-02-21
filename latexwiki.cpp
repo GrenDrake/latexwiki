@@ -1,4 +1,5 @@
 #include <chrono>
+#include <ctime>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -104,15 +105,25 @@ int main(int argc, const char **argv) {
             std::cerr << "Failed to open output file " << realFilename << "\n";
             continue;
         }
+
+        time_t rawtime;
+        struct tm *timeinfo;
+        char buffer[80];
+        time (&rawtime);
+        timeinfo = localtime(&rawtime);
+        strftime(buffer, sizeof(buffer), "%b %d, %Y", timeinfo);
+
         std::string newFront = front;
-        std::string::size_type titlePos = newFront.find("%TITLE%");
-        newFront.replace(titlePos, 7, article->name);
+        replaceText(newFront, "%TITLE%", article->name);
+        std::string newBack = back;
+        replaceText(newBack, "%GENTIME%", buffer);
+
         outf << newFront;
         FormatDocument dd(&document, outf);
         dd.errorLog = &errorLog;
         dd.article = article;
         article->process(dd);
-        outf << back;
+        outf << newBack;
     }
     std::chrono::milliseconds writeEnd = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
     std::cerr << "Completed in " << (writeEnd - writeStart).count() << " ms.\n\n";
