@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <ctime>
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -38,6 +39,15 @@ void printList(const std::vector<std::string> &list) {
 void make_indexes(const std::string &pageTop, const std::string &pageBottom, Document &document) {
     std::vector<IndexEntry> pinfo;
 
+    time_t rawtime;
+    struct tm *timeinfo;
+    char buffer[80];
+    time (&rawtime);
+    timeinfo = localtime(&rawtime);
+    strftime(buffer, sizeof(buffer), "%b %d, %Y", timeinfo);
+    std::string newBack = pageBottom;
+    replaceText(newBack, "%GENTIME%", buffer);
+
     for (auto iter : document.links) {
         Article *toPage = document.byFile(iter.second.targetPage);
         if (!toPage) {
@@ -57,9 +67,9 @@ void make_indexes(const std::string &pageTop, const std::string &pageBottom, Doc
     }
 
     std::sort(pinfo.begin(), pinfo.end(), sort_alpha);
-    make_alpha(pageTop, pageBottom, pinfo);
-    make_world(pageTop, pageBottom, pinfo);
-    make_category(pageTop, pageBottom, pinfo);
+    make_alpha(pageTop, newBack, pinfo);
+    make_world(pageTop, newBack, pinfo);
+    make_category(pageTop, newBack, pinfo);
 
     if (showMissingWorld && !missingWorld.empty()) {
         std::cerr << "Articles without defined world:\n";
