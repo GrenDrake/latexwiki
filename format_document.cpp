@@ -87,6 +87,18 @@ void FormatDocument::handle(Command *command) {
         }
         out << "'>link</a>)";
 
+    } else if (command->command == "href") {
+        out << "<a href='";
+        handle(command->at(0));
+        out << "'>";
+        handle(command->at(1));
+        out << "</a>";
+    } else if (command->command == "url") {
+        out << "<a href='";
+        handle(command->at(0));
+        out << "'>";
+        handle(command->at(0));
+        out << "</a>";
     } else if (command->command == "emph") {
         out << "<i>";
         handle(command->children.front());

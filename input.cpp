@@ -25,6 +25,8 @@ std::vector<CommandInfo> commandInfo = {
     {   "end",              1, 1 },
     {   "item",             0, 1 },
 
+    {   "href",             2, 2 },
+    {   "url",              1, 1 },
     {   "textbf",           1, 1 },
     {   "emph",             1, 1 },
     {   "nexustext",        1, 1 },
