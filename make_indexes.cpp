@@ -82,13 +82,13 @@ void make_alpha(const std::string &pageTop, const std::string &pageBottom, std::
     newFront.replace(titlePos, 7, "Alphabetical Index");
     alphaFile << newFront;
     alphaFile << "<h1>Alphabetical Index</h1>\n";
-    alphaFile << "<ul>\n";
+    alphaFile << "<ul class='indexlist'>\n";
 
     char lastchar = 0;
     for (const IndexEntry entry : pinfo) {
         char firstchar = g_toupper(entry.name[0]);
         if (lastchar != firstchar) {
-            alphaFile << "<h2>" << firstchar << "</h2>\n";
+            alphaFile << "</ul>\n<h2 class='indexhead'>" << firstchar << "</h2>\n<ul class='indexlist'>\n";
             lastchar = firstchar;
         }
 
@@ -128,7 +128,7 @@ void make_world(const std::string &pageTop, const std::string &pageBottom, std::
     alphaFile << "<ul>\n";
 
     for (auto iter : data) {
-        alphaFile << "<h2>" << iter.first << "</h2>\n<ul>\n";
+        alphaFile << "</ul>\n<h2 class='indexhead'>" << iter.first << "</h2>\n<ul class='indexlist'>\n";
         for (const IndexEntry &entry : iter.second) {
             alphaFile << "<li><a href='" << entry.targetFile;
             if (!entry.targetFragment.empty()) {
@@ -168,7 +168,7 @@ void make_category(const std::string &pageTop, const std::string &pageBottom, st
     alphaFile << "<ul>\n";
 
     for (auto iter : data) {
-        alphaFile << "<h2>" << iter.first << "</h2>\n<ul>\n";
+        alphaFile << "</ul>\n<h2 class='indexhead'>" << iter.first << "</h2>\n<ul class='indexlist'>\n";
         for (const IndexEntry &entry : iter.second) {
             alphaFile << "<li><a href='" << entry.targetFile;
             if (!entry.targetFragment.empty()) {

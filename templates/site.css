@@ -23,6 +23,13 @@ h1 {
     font-weight: bold;
 
 }
+.indexhead {
+    text-align: center;
+    border-bottom: 1px dotted black;
+}
+.indexlist {
+    columns: 3;
+}
 
 .infobox {
     width: 50%;
