@@ -80,15 +80,17 @@ void make_alpha(const std::string &pageTop, const std::string &pageBottom, std::
     std::string newFront = pageTop;
     std::string::size_type titlePos = newFront.find("%TITLE%");
     newFront.replace(titlePos, 7, "Alphabetical Index");
+    replaceText(newFront, "%CATNAV%", "");
+    replaceText(newFront, "%WORLDNAV%", "");
     alphaFile << newFront;
-    alphaFile << "<h1>Alphabetical Index</h1>\n";
+    alphaFile << "<h2>Alphabetical Index</h2>\n";
     alphaFile << "<ul class='indexlist'>\n";
 
     char lastchar = 0;
     for (const IndexEntry entry : pinfo) {
         char firstchar = g_toupper(entry.name[0]);
         if (lastchar != firstchar) {
-            alphaFile << "</ul>\n<h2 class='indexhead'>" << firstchar << "</h2>\n<ul class='indexlist'>\n";
+            alphaFile << "</ul>\n<h3 class='indexhead'>" << firstchar << "</h3>\n<ul class='indexlist'>\n";
             lastchar = firstchar;
         }
 
@@ -123,12 +125,14 @@ void make_world(const std::string &pageTop, const std::string &pageBottom, std::
     std::string newFront = pageTop;
     std::string::size_type titlePos = newFront.find("%TITLE%");
     newFront.replace(titlePos, 7, "World Index");
+    replaceText(newFront, "%CATNAV%", "");
+    replaceText(newFront, "%WORLDNAV%", "");
     alphaFile << newFront;
-    alphaFile << "<h1>World Index</h1>\n";
+    alphaFile << "<h2>World Index</h2>\n";
     alphaFile << "<ul>\n";
 
     for (auto iter : data) {
-        alphaFile << "</ul>\n<h2 class='indexhead'>" << iter.first << "</h2>\n<ul class='indexlist'>\n";
+        alphaFile << "</ul>\n<h3 class='indexhead'>" << iter.first << "</h3>\n<ul class='indexlist'>\n";
         for (const IndexEntry &entry : iter.second) {
             alphaFile << "<li><a href='" << entry.targetFile;
             if (!entry.targetFragment.empty()) {
@@ -163,12 +167,14 @@ void make_category(const std::string &pageTop, const std::string &pageBottom, st
     std::string newFront = pageTop;
     std::string::size_type titlePos = newFront.find("%TITLE%");
     newFront.replace(titlePos, 7, "Category Index");
+    replaceText(newFront, "%CATNAV%", "");
+    replaceText(newFront, "%WORLDNAV%", "");
     alphaFile << newFront;
-    alphaFile << "<h1>Category Index</h1>\n";
+    alphaFile << "<h2>Category Index</h2>\n";
     alphaFile << "<ul>\n";
 
     for (auto iter : data) {
-        alphaFile << "</ul>\n<h2 class='indexhead'>" << iter.first << "</h2>\n<ul class='indexlist'>\n";
+        alphaFile << "</ul>\n<h3 class='indexhead'>" << iter.first << "</h3>\n<ul class='indexlist'>\n";
         for (const IndexEntry &entry : iter.second) {
             alphaFile << "<li><a href='" << entry.targetFile;
             if (!entry.targetFragment.empty()) {

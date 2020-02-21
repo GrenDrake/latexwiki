@@ -123,6 +123,8 @@ struct Document {
     std::vector<Article*> articles;
     std::map<std::string, LinkTarget> links;
     std::string graphicsPath;
+    std::map<std::string, std::vector<Article*>> categories;
+    std::map<std::string, std::vector<Article*>> worlds;
 };
 
 struct CommandInfo {

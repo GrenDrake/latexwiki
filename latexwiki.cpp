@@ -1,7 +1,9 @@
+#include <algorithm>
 #include <chrono>
 #include <ctime>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include "latexwiki.h"
@@ -22,6 +24,34 @@ void dumpErrors(const ErrorLog &errorLog, bool hideWarnings) {
     }
     std::cerr << "Warnings: " << errorLog.warnCount << "; errors: " << errorLog.errorCount << "; fatals: " << errorLog.fatalCount << ".\n";
 }
+
+
+std::string makeNavBar(const std::vector<Article*> &list, const std::string &navName, const std::string &navCurrent, Article *current) {
+    std::stringstream worldListString;
+    auto listPos = std::find(list.begin(), list.end(), current);
+    if (listPos != list.end()) {
+        worldListString << navName << ": <span class='navtype'>" << navCurrent << "</span> ";
+        if (listPos != list.begin()) {
+            Article *prev = *(listPos - 1);
+            worldListString << "&lt;&lt; <a href='";
+            worldListString << prev->filename;
+            worldListString << "'>";
+            worldListString << prev->name;
+            worldListString << "</a> | ";
+        }
+        worldListString << current->name;
+        if (listPos + 1 != list.end()) {
+            Article *prev = *(listPos + 1);
+            worldListString << " | <a href='";
+            worldListString << prev->filename;
+            worldListString << "'>";
+            worldListString << prev->name;
+            worldListString << "</a> &gt;&gt;";
+        }
+    }
+    return worldListString.str();
+}
+
 
 int main(int argc, const char **argv) {
     std::string filelist;
@@ -115,6 +145,11 @@ int main(int argc, const char **argv) {
 
         std::string newFront = front;
         replaceText(newFront, "%TITLE%", article->name);
+        if (!article->category.empty()) replaceText(newFront, "%CATNAV%", makeNavBar(document.categories[article->category], "Category", article->category, article));
+         else                           replaceText(newFront, "%CATNAV%", "");
+        if (!article->category.empty()) replaceText(newFront, "%WORLDNAV%", makeNavBar(document.worlds[article->world], "World", article->world, article));
+        else                            replaceText(newFront, "%WORLDNAV%", "");
+
         std::string newBack = back;
         replaceText(newBack, "%GENTIME%", buffer);
 
@@ -152,7 +187,7 @@ int main(int argc, const char **argv) {
     linkFile.close();
 
     if (!errorLog.isEmpty()) {
-        dumpErrors(errorLog, hideWarnings);
+        // dumpErrors(errorLog, hideWarnings);
     }
     std::cerr << "Total runtime: " << ((scanEnd - scanStart) + (writeEnd - writeStart) + (indexesStart - indexesEnd)).count() << " ms.\n";
 

@@ -71,6 +71,7 @@ void ScanDocument::handle(Command *command) {
             return;
         }
         article->world = world->text;
+        document->worlds[world->text].push_back(article);
 
         Text *category = dynamic_cast<Text*>(command->at(3));
         if (!category) {
@@ -78,6 +79,7 @@ void ScanDocument::handle(Command *command) {
             return;
         }
         article->category = category->text;
+        document->categories[category->text].push_back(article);
 
     } else {
         for (Node *c : command->children) {

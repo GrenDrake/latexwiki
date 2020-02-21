@@ -25,17 +25,17 @@ void FormatDocument::handle(Text *text) {
 void FormatDocument::handle(Command *command) {
     if (command->command == "pageinfo") {
     } else if (command->command == "section" || command->command == "chapter") {
-        out << "<h1>";
-        handle(command->children.front());
-        out << "</h1>";
-    } else if (command->command == "subsection") {
         out << "<h2>";
         handle(command->children.front());
         out << "</h2>";
-    } else if (command->command == "subsubsection") {
+    } else if (command->command == "subsection") {
         out << "<h3>";
         handle(command->children.front());
         out << "</h3>";
+    } else if (command->command == "subsubsection") {
+        out << "<h4>";
+        handle(command->children.front());
+        out << "</h4>";
     } else if (command->command == "paragraph") {
         out << "<span class='parahead'>";
         handle(command->children.front());
